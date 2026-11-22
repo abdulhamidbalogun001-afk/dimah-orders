@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101014">
+  <title>Dimah Orders | Business Management</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-icon">D</div>
+        <div>
+          <h2>DIMAH<span>ORDERS</span></h2>
+          <small>Business workspace</small>
+        </div>
+      </div>
+
+      <div class="workspace-label">WORKSPACE</div>
+
+      <nav class="navigation">
+        <button class="nav-link active" data-page="overview">
+          <span>◫</span> Overview
+        </button>
+        <button class="nav-link" data-page="orders">
+          <span>▤</span> Orders
+        </button>
+        <button class="nav-link" data-page="customers">
+          <span>♙</span> Customers
+        </button>
+        <button class="nav-link" data-page="payments">
+          <span>₦</span> Payments
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <span class="help-icon">✦</span>
+          <h3>Need assistance?</h3>
+          <p>Manage your business with confidence.</p>
+          <a href="mailto:support@dimahstudio.com">Contact support ↗</a>
+        </div>
+
+        <div class="profile">
+          <div class="avatar">D</div>
+          <div class="profile-info">
+            <strong>Demo Business</strong>
+            <small>Administrator</small>
+          </div>
+          <span class="profile-dots">•••</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+      <header class="topbar">
+        <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+
+        <div class="breadcrumb">
+          <span>Workspace</span>
+          <span>/</span>
+          <strong id="breadcrumbTitle">Overview</strong>
+        </div>
+
+        <div class="top-actions">
+          <span class="live-indicator"></span>
+          <span class="live-text">Workspace active</span>
+          <div class="top-avatar">D</div>
+        </div>
+      </header>
+
+      <div class="content">
+
+        <section class="welcome">
+          <div>
+            <p class="eyebrow" id="todayDate">YOUR BUSINESS AT A GLANCE</p>
+            <h1 id="pageTitle">Overview</h1>
+            <p class="subtitle" id="pageSubtitle">
+              Here's what's happening with your business today.
+            </p>
+          </div>
+
+          <button class="primary-btn" id="addOrderBtn">
+            <span>＋</span> Create order
+          </button>
+        </section>
+
+        <!-- OVERVIEW -->
+        <section id="overviewPage" class="page">
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <div class="stat-heading">
+                <span>Total orders</span>
+                <span class="stat-icon purple">▤</span>
+              </div>
+              <h2 id="totalOrders">0</h2>
+              <p>All recorded orders</p>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-heading">
+                <span>Pending orders</span>
+                <span class="stat-icon orange">◷</span>
+              </div>
+              <h2 id="pendingOrders">0</h2>
+              <p>Awaiting processing</p>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-heading">
+                <span>Completed orders</span>
+                <span class="stat-icon green">✓</span>
+              </div>
+              <h2 id="completedOrders">0</h2>
+              <p>Successfully completed</p>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-heading">
+                <span>Revenue</span>
+                <span class="stat-icon blue">₦</span>
+              </div>
+              <h2 id="totalRevenue">₦0</h2>
+              <p>Payments received</p>
+            </article>
+          </div>
+
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Recent orders</h3>
+                <p>Your latest customer orders</p>
+              </div>
+              <button class="text-btn" id="viewAllBtn">View all →</button>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ORDER ID</th>
+                    <th>CUSTOMER</th>
+                    <th>PRODUCT</th>
+                    <th>AMOUNT</th>
+                    <th>STATUS</th>
+                  </tr>
+                </thead>
+                <tbody id="recentOrders"></tbody>
+              </table>
+            </div>
+            <div class="empty-state" id="recentEmpty">
+              No orders yet. Create your first order.
+            </div>
+          </section>
+
+        </section>
+
+        <!-- ORDERS -->
+        <section id="ordersPage" class="page hidden">
+
+          <div class="panel">
+            <div class="panel-header orders-header">
+              <div>
+                <h3>All orders</h3>
+                <p>Manage and track customer orders</p>
+              </div>
+              <div class="filter-controls">
+                <input id="searchInput" type="search"
+                  placeholder="Search orders..." aria-label="Search orders">
+                <select id="statusFilter" aria-label="Filter by status">
+                  <option value="All">All statuses</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Processing">Processing</option>
+                  <option value="Completed">Completed</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ORDER ID</th>
+                    <th>CUSTOMER</th>
+                    <th>PRODUCT</th>
+                    <th>AMOUNT</th>
+                    <th>STATUS</th>
+                    <th>DATE</th>
+                    <th>ACTION</th>
+                  </tr>
+                </thead>
+                <tbody id="ordersTable"></tbody>
+              </table>
+            </div>
+
+            <div class="empty-state" id="ordersEmpty">
+              No matching orders found.
+            </div>
+          </div>
+        </section>
+
+        <!-- CUSTOMERS -->
+        <section id="customersPage" class="page hidden">
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Customers</h3>
+                <p>Your customer directory</p>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>CUSTOMER</th>
+                    <th>PHONE</th>
+                    <th>TOTAL ORDERS</th>
+                    <th>TOTAL SPENT</th>
+                  </tr>
+                </thead>
+                <tbody id="customersTable"></tbody>
+              </table>
+            </div>
+            <div class="empty-state" id="customersEmpty">
+              Your customers will appear here.
+            </div>
+          </div>
+        </section>
+
+        <!-- PAYMENTS -->
+        <section id="paymentsPage" class="page hidden">
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h3>Payments</h3>
+                <p>Monitor payments and outstanding balances</p>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ORDER ID</th>
+                    <th>CUSTOMER</th>
+                    <th>ORDER TOTAL</th>
+                    <th>PAID</th>
+                    <th>BALANCE</th>
+                  </tr>
+                </thead>
+                <tbody id="paymentsTable"></tbody>
+              </table>
+            </div>
+            <div class="empty-state" id="paymentsEmpty">
+              No payment records yet.
+            </div>
+          </div>
+        </section>
+
+        <footer>
+          <span>© 2026 DIMAH STUDIO</span>
+          <span>DIMAH ORDERS · VERSION 1.0</span>
+        </footer>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- CREATE ORDER MODAL -->
+  <div class="modal-overlay hidden" id="orderModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div>
+          <p class="eyebrow">NEW TRANSACTION</p>
+          <h2>Create an order</h2>
+        </div>
+        <button class="close-btn" id="closeModal" aria-label="Close">×</button>
+      </div>
+
+      <form id="orderForm">
+
+        <label for="customerName">Customer name</label>
+        <input id="customerName" type="text" placeholder="Enter full name" required>
+
+        <label for="customerPhone">Phone number</label>
+        <input id="customerPhone" type="tel" placeholder="e.g. 08012345678" required>
+
+        <label for="productName">Product / Service</label>
+        <input id="productName" type="text" placeholder="e.g. Custom outfit" required>
+
+        <div class="form-row">
+          <div>
+            <label for="orderAmount">Order amount (₦)</label>
+            <input id="orderAmount" type="number" min="1" placeholder="50000" required>
+          </div>
+          <div>
+            <label for="amountPaid">Amount paid (₦)</label>
+            <input id="amountPaid" type="number" min="0" placeholder="0" value="0" required>
+          </div>
+        </div>
+
+        <label for="orderStatus">Order status</label>
+        <select id="orderStatus">
+          <option value="Pending">Pending</option>
+          <option value="Processing">Processing</option>
+          <option value="Completed">Completed</option>
+        </select>
+
+        <label for="deliveryDate">Delivery date</label>
+        <input id="deliveryDate" type="date">
+
+        <div class="form-actions">
+          <button type="button" class="cancel-btn" id="cancelModal">Cancel</button>
+          <button type="submit" class="primary-btn">Save order</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
